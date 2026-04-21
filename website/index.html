@@ -28,6 +28,19 @@
 </head>
 
 <body>
+
+  <!-- ===== VIDEO INTRO OVERLAY ===== -->
+  <div class="video-intro-overlay" id="videoIntroOverlay">
+    <video class="video-intro-player" id="videoIntroPlayer" playsinline>
+      <source src="../0421_compressed.mp4" type="video/mp4">
+    </video>
+    <button class="video-intro-skip" id="videoIntroSkip">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+        <path d="M5 4l10 8-10 8V4zm11 0h3v16h-3V4z" />
+      </svg>
+      Bỏ qua
+    </button>
+  </div>
   <!-- ===== SCROLL PROGRESS BAR ===== -->
   <div class="scroll-progress" id="scrollProgress"></div>
 
@@ -179,6 +192,12 @@
             </svg>
             Xem bản đồ phân tích
           </a>
+          <button class="btn btn-secondary" id="replayVideoBtn" onclick="replayIntroVideo()">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            Xem video giới thiệu
+          </button>
         </div>
 
         <!-- Course info -->
@@ -1387,6 +1406,69 @@
 
           <div class="dna-conclusion" data-animate>
             Một xã hội pháp quyền không thể bền vững nếu công dân chỉ đứng ngoài quan sát.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SECTION: Ô CHỮ TƯƠNG TÁC ===== -->
+    <section class="section section--alt" id="crossword">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Ô Chữ Pháp Quyền</h2>
+          <p class="section-subtitle">Giải 9 câu hỏi ngang để tìm từ khóa dọc — thử thách kiến thức của bạn!</p>
+        </div>
+
+        <div class="crossword-wrapper">
+          <div class="crossword-grid" id="crosswordGrid"></div>
+
+          <div class="crossword-clues">
+            <h3>Câu Hỏi</h3>
+            <ol class="crossword-clue-list">
+              <li data-row="0"><strong>(8 chữ cái)</strong> Đây là yếu tố tạo nên "khuôn khổ" cho quản trị quốc gia mà
+                tất cả đều phải "thượng tôn".</li>
+              <li data-row="1"><strong>(8 chữ cái)</strong> Nguyên tắc sắt đá quy định mọi tổ chức, đảng viên phải tuân
+                thủ khuôn khổ pháp luật và đạo luật cơ bản nhất này.</li>
+              <li data-row="2"><strong>(6 chữ cái)</strong> Theo chân lý vận hành, khái niệm này nếu khuyết "Pháp quyền"
+                thì sẽ sinh ra hỗn loạn.</li>
+              <li data-row="3"><strong>(6 chữ cái)</strong> Đột phá chiến lược thứ ba là cải cách lĩnh vực này, với
+                nguyên tắc lấy "xét xử làm trung tâm".</li>
+              <li data-row="4"><strong>(8 chữ cái)</strong> Trụ cột thứ 5 trong hệ thống 8 đặc trưng cốt lõi chỉ ra rằng
+                cần phải "Kiểm soát" thứ này để đảm bảo nó không bị tha hóa.</li>
+              <li data-row="5"><strong>(7 chữ cái)</strong> Bộ luật ban hành năm 2023 nhằm "Kiến tạo minh bạch" và triệt
+                tiêu thông đồng, gian lận là luật gì?</li>
+              <li data-row="6"><strong>(8 chữ cái)</strong> Trọng tâm của toàn bộ báo cáo nghiên cứu hướng đến
+                "__________ vươn mình của dân tộc".</li>
+              <li data-row="7"><strong>(6 chữ cái)</strong> Văn kiện Đại hội XIV nhận định yếu tố nào là "điểm nghẽn của
+                điểm nghẽn" nhưng cũng chính là "đột phá của đột phá"?</li>
+              <li data-row="8"><strong>(7 chữ cái)</strong> Theo tóm tắt, ai là "hạt nhân" của hệ thống, là trung tâm mà
+                bộ máy Nhà nước phải là công cụ phục vụ?</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="crossword-actions">
+          <button class="btn btn-primary" id="crosswordRevealBtn" onclick="handleCrosswordReveal()">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+              <path
+                d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
+            </svg>
+            Xem Đáp Án
+          </button>
+        </div>
+
+        <!-- Keyword input modal -->
+        <div class="crossword-keyword-modal" id="crosswordKeywordModal">
+          <div class="crossword-keyword-inner">
+            <h3>Nhập từ khóa dọc (cột màu đỏ)</h3>
+            <p>Ghép 9 chữ cái từ cột được tô màu để tìm từ khóa chính</p>
+            <input type="text" class="crossword-keyword-input" id="crosswordKeywordInput" placeholder="Nhập từ khóa..."
+              maxlength="20" autocomplete="off">
+            <div class="crossword-keyword-actions">
+              <button class="btn btn-secondary" onclick="closeCrosswordModal()">Hủy</button>
+              <button class="btn btn-primary" onclick="checkCrosswordKeyword()">Kiểm tra</button>
+            </div>
+            <p class="crossword-keyword-error" id="crosswordKeywordError"></p>
           </div>
         </div>
       </div>

@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initFlowLineDrawing();
   initCorruptionFlow();
   initChapterRail();
+  initCrossword();
+  initVideoIntro();
 });
 
 function rafThrottle(fn) {
@@ -616,4 +618,159 @@ function initChapterRail() {
   }, { threshold: 0, rootMargin: '-30% 0px -60% 0px' });
 
   chapters.forEach(ch => observer.observe(ch));
+}
+
+/* ===== CROSSWORD ===== */
+const CW_DATA = {
+  answers: [
+    { word: 'PHAPLUAT', keyPos: 0, startCol: 5 },
+    { word: 'HIENPHÁP', keyPos: 0, startCol: 5 },
+    { word: 'DANCHU', keyPos: 1, startCol: 4 },
+    { word: 'TUPHAP', keyPos: 2, startCol: 3 },
+    { word: 'QUYENLUC', keyPos: 0, startCol: 5 },
+    { word: 'DAUTHAU', keyPos: 2, startCol: 3 },
+    { word: 'KYNGUYEN', keyPos: 5, startCol: 0 },
+    { word: 'THECHE', keyPos: 2, startCol: 3 },
+    { word: 'NHANDAN', keyPos: 3, startCol: 2 }
+  ],
+  displayLetters: [
+    ['P', 'H', 'Á', 'P', 'L', 'U', 'Ậ', 'T'],
+    ['H', 'I', 'Ế', 'N', 'P', 'H', 'Á', 'P'],
+    ['D', 'Â', 'N', 'C', 'H', 'Ủ'],
+    ['T', 'Ư', 'P', 'H', 'Á', 'P'],
+    ['Q', 'U', 'Y', 'Ề', 'N', 'L', 'Ự', 'C'],
+    ['Đ', 'Ấ', 'U', 'T', 'H', 'Ầ', 'U'],
+    ['K', 'Ỷ', 'N', 'G', 'U', 'Y', 'Ê', 'N'],
+    ['T', 'H', 'Ể', 'C', 'H', 'Ế'],
+    ['N', 'H', 'Â', 'N', 'D', 'Â', 'N']
+  ],
+  totalCols: 13,
+  keyCol: 5,
+  keyword: 'PHAPQUYEN'
+};
+
+function initCrossword() {
+  const grid = document.getElementById('crosswordGrid');
+  if (!grid) return;
+
+  const { answers, totalCols } = CW_DATA;
+  const rows = answers.length;
+  // +1 column for row numbers
+  grid.style.gridTemplateColumns = `28px repeat(${totalCols}, 36px)`;
+  grid.style.gridTemplateRows = `repeat(${rows}, 36px)`;
+
+  for (let r = 0; r < rows; r++) {
+    const { word, startCol } = answers[r];
+    // Row number
+    const numEl = document.createElement('div');
+    numEl.className = 'cw-row-num';
+    numEl.textContent = r + 1;
+    numEl.style.gridRow = r + 1;
+    numEl.style.gridColumn = 1;
+    grid.appendChild(numEl);
+
+    for (let c = 0; c < totalCols; c++) {
+      const cell = document.createElement('div');
+      cell.style.gridRow = r + 1;
+      cell.style.gridColumn = c + 2; // +2 because col 1 is row number
+
+      const letterIdx = c - startCol;
+      if (letterIdx >= 0 && letterIdx < word.length) {
+        cell.className = 'cw-cell' + (c === CW_DATA.keyCol ? ' cw-cell--key' : '');
+        cell.dataset.row = r;
+        cell.dataset.col = c;
+        cell.dataset.letter = word[letterIdx];
+      } else {
+        cell.className = 'cw-cell cw-cell--empty';
+      }
+      grid.appendChild(cell);
+    }
+  }
+}
+
+function handleCrosswordReveal() {
+  document.getElementById('crosswordKeywordModal').classList.add('active');
+  const input = document.getElementById('crosswordKeywordInput');
+  input.value = '';
+  input.focus();
+  document.getElementById('crosswordKeywordError').textContent = '';
+}
+
+function closeCrosswordModal() {
+  document.getElementById('crosswordKeywordModal').classList.remove('active');
+}
+
+function checkCrosswordKeyword() {
+  const input = document.getElementById('crosswordKeywordInput');
+  const val = input.value.trim().toUpperCase()
+    .replace(/[\s\u0300-\u036f]/g, '')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+  if (val === CW_DATA.keyword || val === 'PHAPQUYEN' || val === 'PHÁP QUYỀN'.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s/g, '')) {
+    closeCrosswordModal();
+    revealCrossword();
+  } else {
+    document.getElementById('crosswordKeywordError').textContent = 'Chưa đúng, thử lại nhé!';
+    input.classList.add('shake');
+    setTimeout(() => input.classList.remove('shake'), 500);
+  }
+}
+
+function revealCrossword() {
+  const cells = document.querySelectorAll('.cw-cell[data-letter]');
+  const btn = document.getElementById('crosswordRevealBtn');
+  btn.disabled = true;
+  btn.textContent = 'Đã hiển thị đáp án';
+
+  cells.forEach((cell, i) => {
+    const row = parseInt(cell.dataset.row);
+    const col = parseInt(cell.dataset.col);
+    const startCol = CW_DATA.answers[row].startCol;
+    const letterIdx = col - startCol;
+    const displayLetter = CW_DATA.displayLetters[row][letterIdx];
+
+    setTimeout(() => {
+      cell.textContent = displayLetter;
+      cell.classList.add('cw-cell--revealed');
+    }, i * 40);
+  });
+}
+
+/* ===== VIDEO INTRO ===== */
+function initVideoIntro() {
+  const overlay = document.getElementById('videoIntroOverlay');
+  const video = document.getElementById('videoIntroPlayer');
+  const skipBtn = document.getElementById('videoIntroSkip');
+  if (!overlay || !video) return;
+
+  function closeIntro() {
+    localStorage.setItem('videoIntroSeen', 'true');
+    overlay.classList.add('hidden');
+    video.pause();
+  }
+
+  // Check if already seen
+  if (localStorage.getItem('videoIntroSeen') === 'true') {
+    overlay.classList.add('hidden');
+  } else {
+    // Show and play
+    video.play().catch(() => {
+      overlay.addEventListener('click', () => video.play(), { once: true });
+    });
+  }
+
+  skipBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeIntro();
+  });
+  video.addEventListener('ended', closeIntro);
+}
+
+function replayIntroVideo() {
+  const overlay = document.getElementById('videoIntroOverlay');
+  const video = document.getElementById('videoIntroPlayer');
+  if (!overlay || !video) return;
+  overlay.classList.remove('hidden');
+  video.currentTime = 0;
+  video.play();
 }

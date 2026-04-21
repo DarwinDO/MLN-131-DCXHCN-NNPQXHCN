@@ -5732,3 +5732,274 @@ strong {
     font-size: 0.78rem;
   }
 }
+
+/* ===== VIDEO INTRO OVERLAY ===== */
+.video-intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.video-intro-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.video-intro-player {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.video-intro-skip {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.video-intro-skip:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.05);
+}
+
+/* ===== CROSSWORD ===== */
+.crossword-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 900px) {
+  .crossword-wrapper {
+    grid-template-columns: auto 1fr;
+    gap: 40px;
+  }
+}
+
+.crossword-grid {
+  display: grid;
+  gap: 0;
+  justify-self: center;
+}
+
+.cw-cell {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 1px solid var(--navy-border);
+  background: #fff;
+  color: var(--navy);
+  transition: all 0.3s ease;
+}
+
+.cw-cell--empty {
+  background: transparent;
+  border-color: transparent;
+}
+
+.cw-cell--key {
+  background: rgba(155, 34, 38, 0.08);
+  border-color: var(--burgundy);
+  box-shadow: inset 0 0 0 1px rgba(155, 34, 38, 0.15);
+}
+
+.cw-cell--revealed {
+  animation: cwReveal 0.4s ease both;
+  background: var(--surface);
+  color: var(--navy);
+}
+
+.cw-cell--key.cw-cell--revealed {
+  background: rgba(155, 34, 38, 0.15);
+  color: var(--burgundy);
+  font-weight: 900;
+}
+
+@keyframes cwReveal {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+
+  60% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.cw-row-num {
+  width: 28px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--navy);
+  opacity: 0.5;
+  border: none;
+  background: transparent;
+}
+
+/* Clues */
+.crossword-clues {
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 20px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--navy-border);
+}
+
+.crossword-clues h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--navy);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--navy-border);
+}
+
+.crossword-clue-list {
+  list-style: none;
+  padding: 0;
+  counter-reset: clue;
+}
+
+.crossword-clue-list li {
+  counter-increment: clue;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(27, 42, 74, 0.06);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.crossword-clue-list li::before {
+  content: counter(clue) ". ";
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.crossword-clue-list li:hover {
+  background: rgba(27, 42, 74, 0.03);
+  padding-left: 8px;
+}
+
+.crossword-clue-list li.cw-clue-active {
+  background: rgba(196, 164, 105, 0.1);
+  padding-left: 8px;
+  border-left: 3px solid var(--gold);
+}
+
+/* Actions */
+.crossword-actions {
+  text-align: center;
+  margin-top: 16px;
+}
+
+/* Keyword modal */
+.crossword-keyword-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+}
+
+.crossword-keyword-modal.active {
+  display: flex;
+}
+
+.crossword-keyword-inner {
+  background: #fff;
+  padding: 40px;
+  border-radius: 16px;
+  max-width: 440px;
+  width: 90%;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.crossword-keyword-inner h3 {
+  font-family: var(--font-display);
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.crossword-keyword-inner p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+}
+
+.crossword-keyword-input {
+  width: 100%;
+  padding: 14px 20px;
+  border: 2px solid var(--navy-border);
+  border-radius: var(--radius);
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--navy);
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.crossword-keyword-input:focus {
+  border-color: var(--burgundy);
+}
+
+.crossword-keyword-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.crossword-keyword-error {
+  color: var(--burgundy);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-top: 12px;
+  min-height: 1.2em;
+}
