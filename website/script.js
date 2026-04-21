@@ -741,6 +741,7 @@ function initVideoIntro() {
   const overlay = document.getElementById('videoIntroOverlay');
   const video = document.getElementById('videoIntroPlayer');
   const skipBtn = document.getElementById('videoIntroSkip');
+  const playBtn = document.getElementById('videoIntroPlay');
   if (!overlay || !video) return;
 
   function closeIntro() {
@@ -749,15 +750,19 @@ function initVideoIntro() {
     video.pause();
   }
 
-  // Check if already seen
+  function startPlay() {
+    if (playBtn) playBtn.classList.add('hidden');
+    video.muted = false;
+    video.play();
+  }
+
+  // Check if already seen — hide overlay
   if (localStorage.getItem('videoIntroSeen') === 'true') {
     overlay.classList.add('hidden');
-  } else {
-    // Show and play
-    video.play().catch(() => {
-      overlay.addEventListener('click', () => video.play(), { once: true });
-    });
   }
+
+  // Click play button to start with sound
+  if (playBtn) playBtn.addEventListener('click', startPlay);
 
   skipBtn.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -769,8 +774,9 @@ function initVideoIntro() {
 function replayIntroVideo() {
   const overlay = document.getElementById('videoIntroOverlay');
   const video = document.getElementById('videoIntroPlayer');
+  const playBtn = document.getElementById('videoIntroPlay');
   if (!overlay || !video) return;
   overlay.classList.remove('hidden');
+  if (playBtn) playBtn.classList.remove('hidden');
   video.currentTime = 0;
-  video.play();
 }
