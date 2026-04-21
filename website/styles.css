@@ -6106,3 +6106,53 @@ strong {
   margin-top: 12px;
   min-height: 1.2em;
 }
+
+.crossword-keyword-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(27, 42, 74, 0.06);
+  border-radius: 50%;
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.crossword-keyword-close:hover {
+  background: rgba(27, 42, 74, 0.12);
+  color: var(--navy);
+}
+
+.crossword-keyword-inner {
+  position: relative;
+}
+
+.video-intro-close {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  z-index: 10;
+}
+
+.video-intro-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+}

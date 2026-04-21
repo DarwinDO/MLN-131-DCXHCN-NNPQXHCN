@@ -33,8 +33,14 @@
   <div class="video-intro-overlay" id="videoIntroOverlay">
     <video class="video-intro-player" id="videoIntroPlayer" preload="auto" playsinline
       aria-label="Video giới thiệu Hồ Sơ Vụ Việc Ông Bình">
-      <source src="0421_compressed.mp4" type="video/mp4">
+      <source src="intro.mp4" type="video/mp4">
     </video>
+    <button class="video-intro-close" id="videoIntroClose" type="button" aria-label="Đóng video">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true" focusable="false">
+        <path
+          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+      </svg>
+    </button>
     <button class="video-intro-play" id="videoIntroPlay" type="button" aria-label="Phát video giới thiệu có âm thanh">
       <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true" focusable="false">
         <path d="M8 5v14l11-7z" />
@@ -1470,6 +1476,7 @@
         <!-- Keyword input modal -->
         <div class="crossword-keyword-modal" id="crosswordKeywordModal">
           <div class="crossword-keyword-inner">
+            <button class="crossword-keyword-close" onclick="closeCrosswordModal()">&times;</button>
             <h3>Nhập từ khóa dọc (cột màu đỏ)</h3>
             <p>Ghép 9 chữ cái từ cột được tô màu để tìm từ khóa chính</p>
             <input type="text" class="crossword-keyword-input" id="crosswordKeywordInput" placeholder="Nhập từ khóa..."
@@ -1558,7 +1565,8 @@
           <div class="ai-tool-tag">Claude <span>— cấu trúc, biên tập</span></div>
           <div class="ai-tool-tag">NotebookLM <span>— tổng hợp tài liệu</span></div>
           <div class="ai-tool-tag">Antigravity <span>— code website</span></div>
-          <div class="ai-tool-tag">Canva AI <span>— thiết kế slide</span></div>
+          <div class="ai-tool-tag">Veo 3.1 <span>— video</span></div>
+
         </div>
 
         <!-- Academic Integrity Statement -->

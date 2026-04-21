@@ -779,6 +779,15 @@ function initVideoIntro() {
       closeIntro();
     });
   }
+
+  const closeBtn = document.getElementById('videoIntroClose');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeIntro();
+    });
+  }
+
   video.addEventListener('ended', closeIntro);
 
   // Check if already seen — hide overlay
