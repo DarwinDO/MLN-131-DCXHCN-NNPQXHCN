@@ -9,6 +9,7 @@ Static one-page academic website for the MLN-131 presentation on socialist democ
 ## Website State
 
 - Main files: `website/index.html`, `website/styles.css`, `website/script.js`.
+- Static video asset: `website/0421_compressed.mp4`, colocated with `index.html` so Vercel publishes it with the static site.
 - Current concept: "Case File: Ong Binh" with blueprint-style academic visuals.
 - The opening video intro now preloads the first frame, avoids a plain black initial overlay, and keeps audio playback behind an explicit user click so browser autoplay policies do not block it.
 - The `#theory-bridge` section now uses a centered compass visual plus a blueprint-style 8-pillar visual for the core characteristics of the socialist rule-of-law state.
