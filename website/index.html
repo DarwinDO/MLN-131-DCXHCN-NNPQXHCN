@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hồ Sơ Vụ Việc Ông Bình — Giải Mã Điểm Nghẽn Pháp Quyền</title>
+  <meta name="description" content="Website học thuật tương tác phân tích tình huống Ông Bình — Nhà nước pháp quyền XHCN Việt Nam, phòng chống tham nhũng và trách nhiệm công dân." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238B1A1A'%3E%3Cpath d='M9 2a1 1 0 000 2h2a1 1 0 100-2H9z'/%3E%3Cpath fill-rule='evenodd' d='M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5z'/%3E%3C/svg%3E" />
+</head>
+<body>
+  <!-- ===== SCROLL PROGRESS BAR ===== -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ===== STICKY NAVIGATION ===== -->
+  <header class="nav-header" id="navHeader">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <svg class="nav-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 6h18M3 12h18M3 18h18"/>
+          <circle cx="19" cy="6" r="2" fill="currentColor"/>
+        </svg>
+        <span>HỒ SƠ VỤ VIỆC</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#case-summary" class="nav-link" data-section="case-summary">Vụ Việc</a>
+        <a href="#violations" class="nav-link" data-section="violations">Sai Phạm</a>
+        <a href="#rule-of-law" class="nav-link" data-section="rule-of-law">Pháp Quyền</a>
+        <a href="#quiz" class="nav-link" data-section="quiz">Tình Huống</a>
+        <a href="#lessons" class="nav-link" data-section="lessons">Bài Học</a>
+        <a href="#citizen" class="nav-link" data-section="citizen">Công Dân</a>
+        <a href="#ai-usage" class="nav-link" data-section="ai-usage">AI Usage</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== SECTION 1: HERO ===== -->
+  <section class="hero" id="hero">
+    <!-- Blueprint grid background -->
+    <div class="hero-grid-bg"></div>
+    <!-- Floating particles canvas -->
+    <canvas class="hero-particles" id="heroParticles"></canvas>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+          <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+          <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"/>
+        </svg>
+        HỒ SƠ PHÂN TÍCH TƯƠNG TÁC
+      </div>
+      <h1 class="hero-title">
+        HỒ SƠ VỤ VIỆC<br/>
+        <span class="hero-title-accent">ÔNG BÌNH</span>
+      </h1>
+      <p class="hero-subtitle">Giải Mã Điểm Nghẽn Pháp Quyền</p>
+      <p class="hero-desc">
+        Từ sai phạm quyền lực đến yêu cầu xây dựng Nhà nước pháp quyền XHCN và trách nhiệm công dân
+      </p>
+
+      <!-- 3 violation tags -->
+      <div class="hero-tags">
+        <span class="hero-tag hero-tag--red">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+          Vượt thẩm quyền
+        </span>
+        <span class="hero-tag hero-tag--amber">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.97 5.97 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.97 5.97 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+          Chỉ định thầu cho người thân
+        </span>
+        <span class="hero-tag hero-tag--navy">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+          Chênh lệch 4,5 tỷ đồng
+        </span>
+      </div>
+
+      <!-- CTA Buttons -->
+      <div class="hero-ctas">
+        <a href="#case-summary" class="btn btn-primary" id="ctaOpenFile">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"/></svg>
+          Mở hồ sơ vụ việc
+        </a>
+        <a href="#rule-of-law" class="btn btn-secondary" id="ctaMap">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M12 1.586l-4 4v12.828l4-4V1.586zM3.707 3.293A1 1 0 002 4v10a1 1 0 00.293.707L6 18.414V5.586L3.707 3.293zM14 5.586v12.828l2.293-2.293A1 1 0 0018 16V6a1 1 0 00-.293-.707L14 1.586v4z" clip-rule="evenodd"/></svg>
+          Xem bản đồ phân tích
+        </a>
+      </div>
+
+      <!-- Course info -->
+      <div class="hero-meta">
+        <span>Chủ nghĩa xã hội khoa học</span>
+        <span class="hero-meta-dot">•</span>
+        <span>Nhóm 5</span>
+        <span class="hero-meta-dot">•</span>
+        <span>2025</span>
+      </div>
+    </div>
+
+    <!-- Governance SVG illustration -->
+    <div class="hero-illustration">
+      <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-svg">
+        <!-- Central building -->
+        <g class="hero-svg-building" opacity="0.15">
+          <rect x="150" y="140" width="100" height="120" rx="4" stroke="white" stroke-width="1.5"/>
+          <polygon points="200,100 140,140 260,140" stroke="white" stroke-width="1.5" fill="none"/>
+          <!-- Columns -->
+          <line x1="170" y1="160" x2="170" y2="240" stroke="white" stroke-width="1"/>
+          <line x1="190" y1="160" x2="190" y2="240" stroke="white" stroke-width="1"/>
+          <line x1="210" y1="160" x2="210" y2="240" stroke="white" stroke-width="1"/>
+          <line x1="230" y1="160" x2="230" y2="240" stroke="white" stroke-width="1"/>
+          <!-- Door -->
+          <rect x="185" y="210" width="30" height="50" rx="15" stroke="white" stroke-width="1"/>
+        </g>
+        <!-- Orbiting circles / data points -->
+        <circle cx="200" cy="200" r="130" stroke="white" stroke-width="0.5" opacity="0.08" stroke-dasharray="4 8"/>
+        <circle cx="200" cy="200" r="170" stroke="white" stroke-width="0.5" opacity="0.05" stroke-dasharray="2 12"/>
+        <!-- Connection nodes -->
+        <g class="hero-svg-nodes" opacity="0.2">
+          <circle cx="95" cy="140" r="5" fill="#E8A87C"/>
+          <circle cx="305" cy="140" r="5" fill="#F4A0A0"/>
+          <circle cx="95" cy="260" r="5" fill="#A0C4F0"/>
+          <circle cx="305" cy="260" r="5" fill="#E8A87C"/>
+          <circle cx="200" cy="68" r="5" fill="#F4A0A0"/>
+          <circle cx="200" cy="332" r="5" fill="#A0C4F0"/>
+          <!-- Connecting lines -->
+          <line x1="95" y1="140" x2="150" y2="160" stroke="white" stroke-width="0.5" opacity="0.5"/>
+          <line x1="305" y1="140" x2="250" y2="160" stroke="white" stroke-width="0.5" opacity="0.5"/>
+          <line x1="95" y1="260" x2="150" y2="240" stroke="white" stroke-width="0.5" opacity="0.5"/>
+          <line x1="305" y1="260" x2="250" y2="240" stroke="white" stroke-width="0.5" opacity="0.5"/>
+          <line x1="200" y1="68" x2="200" y2="100" stroke="white" stroke-width="0.5" opacity="0.5"/>
+          <line x1="200" y1="332" x2="200" y2="260" stroke="white" stroke-width="0.5" opacity="0.5"/>
+        </g>
+        <!-- Scale of justice -->
+        <g class="hero-svg-scale" opacity="0.12" transform="translate(200, 85)">
+          <line x1="0" y1="-15" x2="0" y2="5" stroke="white" stroke-width="1.5"/>
+          <line x1="-25" y1="5" x2="25" y2="5" stroke="white" stroke-width="1.5"/>
+          <line x1="-25" y1="5" x2="-25" y2="20" stroke="white" stroke-width="1"/>
+          <line x1="25" y1="5" x2="25" y2="20" stroke="white" stroke-width="1"/>
+          <path d="M-35,20 Q-25,30 -15,20" stroke="white" stroke-width="1" fill="none"/>
+          <path d="M15,20 Q25,30 35,20" stroke="white" stroke-width="1" fill="none"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Decorative geometric elements -->
+    <div class="hero-decoration">
+      <div class="hero-deco-circle"></div>
+      <div class="hero-deco-line hero-deco-line--1"></div>
+      <div class="hero-deco-line hero-deco-line--2"></div>
+      <div class="hero-deco-square"></div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 2: TÓM TẮT VỤ VIỆC ===== -->
+  <section class="section" id="case-summary">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-number">01</span>
+        <h2 class="section-title">Tóm Tắt Vụ Việc</h2>
+        <p class="section-subtitle">Diễn biến chính của tình huống Ông Bình</p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline">
+        <div class="timeline-item" data-animate>
+          <div class="timeline-marker">
+            <span class="timeline-step">1</span>
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Phê duyệt vượt thẩm quyền</h3>
+            <p class="timeline-desc">Ông Bình — Chủ tịch UBND huyện — tự ký duyệt dự án xây trường trị giá <strong>18 tỷ đồng</strong>, vượt quá thẩm quyền phê duyệt được giao.</p>
+          </div>
+        </div>
+        <div class="timeline-item" data-animate>
+          <div class="timeline-marker">
+            <span class="timeline-step">2</span>
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Chỉ định thầu không công khai</h3>
+            <p class="timeline-desc">Thay vì đấu thầu công khai theo quy định, ông chỉ định thầu cho công ty của <strong>anh vợ</strong>, viện lý do cần "làm nhanh để kịp năm học mới".</p>
+          </div>
+        </div>
+        <div class="timeline-item" data-animate>
+          <div class="timeline-marker">
+            <span class="timeline-step">3</span>
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Công trình hoàn thành đúng hạn</h3>
+            <p class="timeline-desc">Trường học được xây xong đúng tiến độ, đưa vào sử dụng phục vụ học sinh. Bề ngoài, mọi thứ có vẻ "hiệu quả".</p>
+          </div>
+        </div>
+        <div class="timeline-item" data-animate>
+          <div class="timeline-marker">
+            <span class="timeline-step">4</span>
+          </div>
+          <div class="timeline-content">
+            <h3 class="timeline-title">Thanh tra phát hiện chênh lệch</h3>
+            <p class="timeline-desc">Cơ quan thanh tra phát hiện quyết toán <strong>chênh lệch 4,5 tỷ đồng</strong> so với khối lượng thực tế thi công — dấu hiệu nghiêm trọng của thất thoát ngân sách.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Core Issue Box -->
+      <div class="core-issue-box" data-animate>
+        <div class="core-issue-header">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+            <path d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <h3>Vấn Đề Cốt Lõi</h3>
+        </div>
+        <ul class="core-issue-list">
+          <li>
+            <span class="core-issue-icon">▸</span>
+            <span>Mục tiêu công <strong>không thể biện minh</strong> cho việc phá vỡ trình tự, thủ tục pháp luật.</span>
+          </li>
+          <li>
+            <span class="core-issue-icon">▸</span>
+            <span>Hiệu quả bề ngoài <strong>không xóa đi</strong> sai phạm trong thực thi quyền lực nhà nước.</span>
+          </li>
+          <li>
+            <span class="core-issue-icon">▸</span>
+            <span>Thất thoát ngân sách là <strong>tổn hại trực tiếp</strong> tới lợi ích công cộng và niềm tin xã hội.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 3: BÓC TÁCH SAI PHẠM ===== -->
+  <section class="section section--alt" id="violations">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <h2 class="section-title">Bóc Tách Sai Phạm</h2>
+        <p class="section-subtitle">Click vào từng thẻ để phân tích chi tiết</p>
+      </div>
+
+      <div class="violation-cards">
+        <!-- Card A -->
+        <div class="violation-card" id="violationA" data-animate>
+          <div class="violation-card-front">
+            <div class="violation-icon violation-icon--red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32">
+                <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+              </svg>
+            </div>
+            <h3 class="violation-card-title">Vượt Thẩm Quyền</h3>
+            <p class="violation-card-brief">Tự ký phê duyệt dự án 18 tỷ đồng vượt quy định thẩm quyền</p>
+            <button class="violation-card-btn" onclick="openViolationModal('A')">
+              Xem phân tích
+              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card B -->
+        <div class="violation-card" id="violationB" data-animate>
+          <div class="violation-card-front">
+            <div class="violation-icon violation-icon--amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32">
+                <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+              </svg>
+            </div>
+            <h3 class="violation-card-title">Chỉ Định Thầu Người Thân</h3>
+            <p class="violation-card-brief">Giao thầu cho công ty anh vợ mà không qua đấu thầu công khai</p>
+            <button class="violation-card-btn" onclick="openViolationModal('B')">
+              Xem phân tích
+              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Card C -->
+        <div class="violation-card" id="violationC" data-animate>
+          <div class="violation-card-front">
+            <div class="violation-icon violation-icon--navy">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="32" height="32">
+                <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="violation-card-title">Chênh Lệch 4,5 Tỷ Đồng</h3>
+            <p class="violation-card-brief">Quyết toán vượt khối lượng thực tế, dấu hiệu thất thoát ngân sách</p>
+            <button class="violation-card-btn" onclick="openViolationModal('C')">
+              Xem phân tích
+              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VIOLATION MODAL ===== -->
+  <div class="modal-overlay" id="violationModal">
+    <div class="modal-container">
+      <button class="modal-close" onclick="closeViolationModal()" aria-label="Đóng">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+      <div class="modal-body" id="violationModalBody">
+        <!-- Content injected by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 4: MA TRẬN PHÁP QUYỀN ===== -->
+  <section class="section" id="rule-of-law">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-number">03</span>
+        <h2 class="section-title">Ma Trận Pháp Quyền</h2>
+        <p class="section-subtitle">5 nguyên tắc cốt lõi của Nhà nước pháp quyền XHCN — Click để xem liên hệ với vụ Ông Bình</p>
+      </div>
+
+      <div class="principle-grid">
+        <!-- Principle 1 -->
+        <div class="principle-card" data-principle="1" onclick="togglePrinciple(this)" data-animate>
+          <div class="principle-card-header">
+            <div class="principle-number">01</div>
+            <h3 class="principle-title">Của dân, do dân, vì dân</h3>
+            <svg class="principle-chevron" viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="principle-card-detail">
+            <div class="principle-explain">
+              <h4>Nguyên tắc</h4>
+              <p>Mọi quyền lực nhà nước thuộc về Nhân dân. Nhà nước phải hoạt động vì lợi ích chung của Nhân dân, được Nhân dân ủy quyền và giám sát.</p>
+            </div>
+            <div class="principle-case">
+              <h4>Trong vụ Ông Bình</h4>
+              <p>Ông Bình dùng quyền lực công để phê duyệt dự án cho người thân hưởng lợi, biến quyền lực "của dân" thành công cụ phục vụ lợi ích cá nhân. Khi lợi ích công bị chuyển hóa thành lợi ích nhóm, bản chất "vì dân" của quyền lực nhà nước bị xâm phạm nghiêm trọng.</p>
+            </div>
+            <div class="principle-why">
+              <h4>Vì sao quan trọng?</h4>
+              <p>"Của dân, do dân, vì dân" không chỉ là khẩu hiệu mà là nền tảng chính đáng hóa quyền lực nhà nước XHCN. Khi bị vi phạm, chính tính chính đáng đó bị suy giảm.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Principle 2 -->
+        <div class="principle-card" data-principle="2" onclick="togglePrinciple(this)" data-animate>
+          <div class="principle-card-header">
+            <div class="principle-number">02</div>
+            <h3 class="principle-title">Thượng tôn Hiến pháp và pháp luật</h3>
+            <svg class="principle-chevron" viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="principle-card-detail">
+            <div class="principle-explain">
+              <h4>Nguyên tắc</h4>
+              <p>Không ai được đứng trên pháp luật. Mọi cơ quan, cá nhân trong bộ máy nhà nước phải hành động trong khuôn khổ Hiến pháp và pháp luật.</p>
+            </div>
+            <div class="principle-case">
+              <h4>Trong vụ Ông Bình</h4>
+              <p>Ông Bình tự ý phê duyệt dự án vượt thẩm quyền, bỏ qua trình tự pháp lý. Dù viện dẫn "mục đích tốt", hành vi này đặt ý chí cá nhân lên trên pháp luật — trái ngược hoàn toàn với yêu cầu thượng tôn pháp luật.</p>
+            </div>
+            <div class="principle-why">
+              <h4>Vì sao quan trọng?</h4>
+              <p>Nếu chấp nhận "mục đích tốt biện hộ cho vi phạm", pháp luật sẽ mất đi tính phổ quát và bình đẳng — nền tảng không thể thiếu của Nhà nước pháp quyền.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Principle 3 -->
+        <div class="principle-card" data-principle="3" onclick="togglePrinciple(this)" data-animate>
+          <div class="principle-card-header">
+            <div class="principle-number">03</div>
+            <h3 class="principle-title">Kiểm soát quyền lực nhà nước</h3>
+            <svg class="principle-chevron" viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="principle-card-detail">
+            <div class="principle-explain">
+              <h4>Nguyên tắc</h4>
+              <p>Quyền lực nhà nước phải được phân công rõ ràng, có cơ chế kiểm soát lẫn nhau và giám sát từ Nhân dân để ngăn chặn lạm quyền.</p>
+            </div>
+            <div class="principle-case">
+              <h4>Trong vụ Ông Bình</h4>
+              <p>Ông Bình vừa phê duyệt dự án vượt thẩm quyền, vừa chọn nhà thầu là người thân — nghĩa là vừa ra quyết định, vừa kiểm soát quá trình thực hiện mà không có bên thứ ba giám sát. Cơ chế kiểm soát quyền lực bị vô hiệu hóa.</p>
+            </div>
+            <div class="principle-why">
+              <h4>Vì sao quan trọng?</h4>
+              <p>Kiểm soát quyền lực là yêu cầu cốt lõi để ngăn chặn cá nhân biến quyền công thành quyền tư. Khi thiếu kiểm soát, nguy cơ tham nhũng tăng theo cấp số nhân.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Principle 4 -->
+        <div class="principle-card" data-principle="4" onclick="togglePrinciple(this)" data-animate>
+          <div class="principle-card-header">
+            <div class="principle-number">04</div>
+            <h3 class="principle-title">Minh bạch, liêm chính, chống lợi ích nhóm</h3>
+            <svg class="principle-chevron" viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="principle-card-detail">
+            <div class="principle-explain">
+              <h4>Nguyên tắc</h4>
+              <p>Hoạt động công vụ phải minh bạch, cán bộ phải liêm chính, không được để xung đột lợi ích ảnh hưởng đến quyết định công.</p>
+            </div>
+            <div class="principle-case">
+              <h4>Trong vụ Ông Bình</h4>
+              <p>Chỉ định thầu cho anh vợ là xung đột lợi ích điển hình. Không đấu thầu công khai là xóa bỏ minh bạch. Chênh lệch 4,5 tỷ là dấu hiệu cho thấy lợi ích nhóm đã xâm hại lợi ích công.</p>
+            </div>
+            <div class="principle-why">
+              <h4>Vì sao quan trọng?</h4>
+              <p>Minh bạch là ánh sáng ngăn tham nhũng phát triển trong bóng tối. Thiếu minh bạch, công chính bị thay bằng thân quen, pháp luật bị thay bằng "linh hoạt".</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Principle 5 -->
+        <div class="principle-card" data-principle="5" onclick="togglePrinciple(this)" data-animate>
+          <div class="principle-card-header">
+            <div class="principle-number">05</div>
+            <h3 class="principle-title">Bảo vệ lợi ích công và niềm tin xã hội</h3>
+            <svg class="principle-chevron" viewBox="0 0 20 20" fill="currentColor" width="18" height="18"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="principle-card-detail">
+            <div class="principle-explain">
+              <h4>Nguyên tắc</h4>
+              <p>Nhà nước pháp quyền XHCN phải bảo vệ tài sản công, lợi ích chung của cộng đồng, và duy trì niềm tin của Nhân dân vào bộ máy nhà nước.</p>
+            </div>
+            <div class="principle-case">
+              <h4>Trong vụ Ông Bình</h4>
+              <p>4,5 tỷ đồng thất thoát là tài sản công bị xâm hại. Dù trường vẫn được xây, niềm tin của người dân vào tính liêm chính của chính quyền địa phương bị tổn thương. Khi sai phạm không được xử lý, nó trở thành tiền lệ xấu.</p>
+            </div>
+            <div class="principle-why">
+              <h4>Vì sao quan trọng?</h4>
+              <p>Niềm tin xã hội là "vốn" phi vật chất quý giá nhất của nhà nước. Mỗi vụ vi phạm không bị xử lý sẽ ăn mòn niềm tin đó — và niềm tin rất khó tái tạo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 5: BẠN SẼ XỬ LÝ THẾ NÀO? ===== -->
+  <section class="section section--alt" id="quiz">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-number">04</span>
+        <h2 class="section-title">Bạn Sẽ Xử Lý Thế Nào?</h2>
+        <p class="section-subtitle">Chọn phương án bạn cho là phù hợp nhất với tinh thần Nhà nước pháp quyền XHCN</p>
+      </div>
+
+      <div class="quiz-container" id="quizContainer">
+        <div class="quiz-question">
+          <div class="quiz-question-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+              <path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <p class="quiz-question-text">
+            Đâu là hướng xử lý phù hợp nhất với tinh thần Nhà nước pháp quyền XHCN trong vụ việc ông Bình?
+          </p>
+        </div>
+
+        <div class="quiz-options" id="quizOptions">
+          <button class="quiz-option" data-answer="A" onclick="selectAnswer('A')">
+            <span class="quiz-option-letter">A</span>
+            <span class="quiz-option-text">Bỏ qua vì công trình đã hoàn thành đúng hạn và phục vụ học sinh.</span>
+          </button>
+          <button class="quiz-option" data-answer="B" onclick="selectAnswer('B')">
+            <span class="quiz-option-letter">B</span>
+            <span class="quiz-option-text">Chỉ nhắc nhở nội bộ vì mục đích ban đầu là tích cực.</span>
+          </button>
+          <button class="quiz-option" data-answer="C" onclick="selectAnswer('C')">
+            <span class="quiz-option-letter">C</span>
+            <span class="quiz-option-text">Kiểm tra, thanh tra, xử lý trách nhiệm cá nhân và tổ chức; đồng thời làm rõ dấu hiệu xung đột lợi ích, thất thoát và vi phạm quy trình.</span>
+          </button>
+          <button class="quiz-option" data-answer="D" onclick="selectAnswer('D')">
+            <span class="quiz-option-letter">D</span>
+            <span class="quiz-option-text">Chỉ yêu cầu hoàn trả phần tiền chênh lệch là đủ.</span>
+          </button>
+        </div>
+
+        <!-- Feedback -->
+        <div class="quiz-feedback" id="quizFeedback">
+          <!-- Injected by JS -->
+        </div>
+
+        <button class="quiz-reset-btn" id="quizReset" onclick="resetQuiz()" style="display:none;">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/></svg>
+          Thử lại
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 6: BÀI HỌC PHÁP QUYỀN ===== -->
+  <section class="section" id="lessons">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-number">05</span>
+        <h2 class="section-title">Từ Vụ Ông Bình Đến Bài Học Xây Dựng Nhà Nước Pháp Quyền</h2>
+        <p class="section-subtitle">Bốn bài học cốt lõi rút ra từ tình huống</p>
+      </div>
+
+      <div class="lessons-grid">
+        <div class="lesson-card" data-animate>
+          <div class="lesson-number">01</div>
+          <h3 class="lesson-title">Không thể lấy thiện chí thay cho pháp quyền</h3>
+          <p class="lesson-desc">
+            "Muốn làm nhanh cho kịp năm học" là mong muốn có thể hiểu được, nhưng Nhà nước pháp quyền đòi hỏi mọi hành vi công quyền phải đúng thẩm quyền, đúng trình tự, đúng pháp luật. Chấp nhận vi phạm vì "thiện chí" sẽ mở ra tiền lệ cho bất kỳ ai lạm quyền dưới vỏ bọc mục đích tốt.
+          </p>
+        </div>
+        <div class="lesson-card" data-animate>
+          <div class="lesson-number">02</div>
+          <h3 class="lesson-title">Thành tích bề ngoài không xóa được sai phạm thể chế</h3>
+          <p class="lesson-desc">
+            Trường được xây đúng hạn, nhưng quy trình bị bỏ qua, minh bạch bị xóa bỏ, ngân sách bị thất thoát. Nếu đánh giá kết quả chỉ qua "sản phẩm cuối cùng" mà bỏ qua "cách thức đạt được", Nhà nước pháp quyền sẽ trở thành khái niệm rỗng.
+          </p>
+        </div>
+        <div class="lesson-card" data-animate>
+          <div class="lesson-number">03</div>
+          <h3 class="lesson-title">Phòng, chống tham nhũng là bảo vệ bản chất Nhà nước XHCN</h3>
+          <p class="lesson-desc">
+            Tham nhũng không chỉ gây thiệt hại tài chính. Nó xâm phạm bản chất "của dân, do dân, vì dân" của Nhà nước, làm suy giảm niềm tin xã hội, và tạo khoảng cách giữa chính quyền với Nhân dân. Phòng, chống tham nhũng vì thế là bảo vệ chính nền tảng của chế độ.
+          </p>
+        </div>
+        <div class="lesson-card" data-animate>
+          <div class="lesson-number">04</div>
+          <h3 class="lesson-title">Xây dựng pháp quyền cần giám sát xã hội</h3>
+          <p class="lesson-desc">
+            Nếu không có thanh tra phát hiện chênh lệch 4,5 tỷ, sai phạm có thể được "hợp thức hóa". Pháp quyền không chỉ là trách nhiệm của cơ quan nhà nước mà còn đòi hỏi sự giám sát từ Nhân dân, báo chí, và xã hội — đúng tinh thần "dân biết, dân bàn, dân làm, dân kiểm tra".
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 7: TRÁCH NHIỆM CÔNG DÂN ===== -->
+  <section class="section section--alt" id="citizen">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-number">06</span>
+        <h2 class="section-title">Trách Nhiệm Công Dân</h2>
+        <p class="section-subtitle">4 hành động cụ thể trong phòng, chống tham nhũng và bảo vệ pháp quyền</p>
+      </div>
+
+      <div class="citizen-grid">
+        <div class="citizen-card" data-animate>
+          <div class="citizen-card-icon citizen-card-icon--1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+              <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+            </svg>
+          </div>
+          <h3 class="citizen-card-title">Giám sát và phản ánh</h3>
+          <p class="citizen-card-desc">
+            Công dân có quyền và trách nhiệm giám sát hoạt động của cơ quan công quyền. Khi phát hiện dấu hiệu sai phạm, cần chủ động phản ánh qua các kênh hợp pháp — từ kiến nghị, khiếu nại đến thông tin cho cơ quan thanh tra.
+          </p>
+          <p class="citizen-card-action">
+            "Giám sát không phải đối đầu — giám sát là thực hiện quyền làm chủ."
+          </p>
+        </div>
+
+        <div class="citizen-card" data-animate>
+          <div class="citizen-card-icon citizen-card-icon--2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+              <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="citizen-card-title">Tôn trọng và bảo vệ pháp luật</h3>
+          <p class="citizen-card-desc">
+            Pháp quyền bắt đầu từ mỗi cá nhân. Công dân cần tự giác tuân thủ pháp luật, không tìm cách "lách luật", đồng thời lên tiếng khi thấy pháp luật bị vi phạm — kể cả khi người vi phạm có chức vụ.
+          </p>
+          <p class="citizen-card-action">
+            "Bảo vệ pháp luật là bảo vệ chính quyền lợi của mình."
+          </p>
+        </div>
+
+        <div class="citizen-card" data-animate>
+          <div class="citizen-card-icon citizen-card-icon--3">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+              <path d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
+            </svg>
+          </div>
+          <h3 class="citizen-card-title">Không tiếp tay cho "linh hoạt sai quy trình"</h3>
+          <p class="citizen-card-desc">
+            Trong đời sống, áp lực "làm nhanh", "cho tiện" thường dẫn đến bỏ qua quy trình. Công dân cần nhận thức rằng "linh hoạt" không hợp pháp chính là mảnh đất cho tham nhũng và lạm quyền phát triển.
+          </p>
+          <p class="citizen-card-action">
+            "Mỗi lần chấp nhận 'ngoại lệ', chúng ta đang mở thêm một kẽ hở quyền lực."
+          </p>
+        </div>
+
+        <div class="citizen-card" data-animate>
+          <div class="citizen-card-icon citizen-card-icon--4">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+              <path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+            </svg>
+          </div>
+          <h3 class="citizen-card-title">Phát huy vai trò công dân số</h3>
+          <p class="citizen-card-desc">
+            Trong kỷ nguyên số, công dân có thêm công cụ để tham gia phản biện xã hội, yêu cầu minh bạch thông tin, và theo dõi các quyết định công. Kỷ nguyên số cũng đòi hỏi trách nhiệm: phản biện có căn cứ, chia sẻ thông tin trung thực.
+          </p>
+          <p class="citizen-card-action">
+            "Im lặng trước sai phạm công không phải là trung lập, mà có thể góp phần bình thường hóa sự lệch chuẩn quyền lực."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 8: AI USAGE ===== -->
+  <section class="section" id="ai-usage">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-number">07</span>
+        <h2 class="section-title">Minh Bạch Ứng Dụng AI</h2>
+        <p class="section-subtitle">Cam kết liêm chính học thuật và quy trình sử dụng AI có trách nhiệm</p>
+      </div>
+
+      <!-- AI Workflow -->
+      <div class="ai-workflow" data-animate>
+        <div class="ai-workflow-step">
+          <div class="ai-workflow-step-number">1</div>
+          <div class="ai-workflow-step-content">
+            <h4>Nguồn học liệu</h4>
+            <p>Giáo trình, nghị quyết, văn bản pháp luật, tài liệu môn học</p>
+          </div>
+        </div>
+        <div class="ai-workflow-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </div>
+        <div class="ai-workflow-step">
+          <div class="ai-workflow-step-number">2</div>
+          <div class="ai-workflow-step-content">
+            <h4>AI hỗ trợ</h4>
+            <p>Gợi ý cấu trúc, diễn đạt, ý tưởng trình bày, thiết kế giao diện</p>
+          </div>
+        </div>
+        <div class="ai-workflow-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </div>
+        <div class="ai-workflow-step">
+          <div class="ai-workflow-step-number">3</div>
+          <div class="ai-workflow-step-content">
+            <h4>Nhóm đối chiếu</h4>
+            <p>Kiểm chứng nguồn, loại bỏ suy diễn, chỉnh sửa nội dung</p>
+          </div>
+        </div>
+        <div class="ai-workflow-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </div>
+        <div class="ai-workflow-step">
+          <div class="ai-workflow-step-number">4</div>
+          <div class="ai-workflow-step-content">
+            <h4>Sản phẩm cuối cùng</h4>
+            <p>Nội dung được nhóm chịu trách nhiệm hoàn toàn</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Detail Sections -->
+      <div class="ai-sections">
+        <!-- A: AI được dùng để làm gì -->
+        <div class="ai-section-card" data-animate>
+          <div class="ai-section-card-header" onclick="toggleAISection(this)">
+            <div class="ai-section-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+                <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
+            </div>
+            <h3>AI được dùng để làm gì?</h3>
+            <svg class="ai-section-chevron" viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="ai-section-card-body">
+            <ul>
+              <li>Gợi ý cấu trúc nội dung và luận điểm phân tích</li>
+              <li>Hỗ trợ diễn đạt, chỉnh sửa ngôn ngữ học thuật</li>
+              <li>Hỗ trợ ý tưởng trình bày web và layout</li>
+              <li>Hệ thống hóa case và câu hỏi tương tác</li>
+              <li>Hỗ trợ thiết kế giao diện, viết code website</li>
+              <li>Tạo hình ảnh minh họa và video hỗ trợ</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- B: Kiểm chứng -->
+        <div class="ai-section-card" data-animate>
+          <div class="ai-section-card-header" onclick="toggleAISection(this)">
+            <div class="ai-section-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3>Nhóm kiểm chứng như thế nào?</h3>
+            <svg class="ai-section-chevron" viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="ai-section-card-body">
+            <ul>
+              <li>Đối chiếu với giáo trình Chủ nghĩa xã hội khoa học và tài liệu môn học</li>
+              <li>Đối chiếu với Hiến pháp, Luật Phòng chống tham nhũng, Luật Đấu thầu, các nghị quyết của Đảng</li>
+              <li>Loại bỏ phần AI suy diễn không có cơ sở hoặc dùng ngôn ngữ quá tuyệt đối</li>
+              <li>Biên tập lại toàn bộ nội dung cho phù hợp chuẩn mực học thuật cấp đại học</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- C: Phân biệt -->
+        <div class="ai-section-card" data-animate>
+          <div class="ai-section-card-header" onclick="toggleAISection(this)">
+            <div class="ai-section-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+                <path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+              </svg>
+            </div>
+            <h3>Phân biệt vai trò AI và nhóm</h3>
+            <svg class="ai-section-chevron" viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="ai-section-card-body">
+            <div class="ai-role-grid">
+              <div class="ai-role-card ai-role-card--ai">
+                <h4>🤖 AI gợi ý</h4>
+                <ul>
+                  <li>Cấu trúc nội dung ban đầu</li>
+                  <li>Bản nháp diễn đạt</li>
+                  <li>Ý tưởng thiết kế, layout</li>
+                  <li>Code giao diện website</li>
+                  <li>Hình ảnh và video minh họa</li>
+                </ul>
+              </div>
+              <div class="ai-role-card ai-role-card--team">
+                <h4>👥 Nhóm thực hiện</h4>
+                <ul>
+                  <li>Xác định chủ đề, góc tiếp cận</li>
+                  <li>Kiểm chứng, biên tập nội dung</li>
+                  <li>Chọn lọc luận điểm để trình bày</li>
+                  <li>Kết luận học thuật cuối cùng</li>
+                  <li>Toàn bộ phần thuyết trình và phản biện</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- D: Công cụ AI -->
+        <div class="ai-section-card" data-animate>
+          <div class="ai-section-card-header" onclick="toggleAISection(this)">
+            <div class="ai-section-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22">
+                <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+            <h3>Công cụ AI đã sử dụng</h3>
+            <svg class="ai-section-chevron" viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="ai-section-card-body">
+            <div class="ai-tools-grid">
+              <div class="ai-tool">
+                <span class="ai-tool-name">ChatGPT</span>
+                <span class="ai-tool-use">Hỗ trợ phân tích, diễn đạt nội dung</span>
+              </div>
+              <div class="ai-tool">
+                <span class="ai-tool-name">Claude</span>
+                <span class="ai-tool-use">Hỗ trợ cấu trúc luận điểm, biên tập</span>
+              </div>
+              <div class="ai-tool">
+                <span class="ai-tool-name">NotebookLM</span>
+                <span class="ai-tool-use">Tổng hợp tài liệu, tạo ghi chú nghiên cứu</span>
+              </div>
+              <div class="ai-tool">
+                <span class="ai-tool-name">Antigravity</span>
+                <span class="ai-tool-use">Hỗ trợ viết code giao diện website</span>
+              </div>
+              <div class="ai-tool">
+                <span class="ai-tool-name">Canva AI</span>
+                <span class="ai-tool-use">Thiết kế slide thuyết trình</span>
+              </div>
+              <div class="ai-tool">
+                <span class="ai-tool-name">Gamma</span>
+                <span class="ai-tool-use">Hỗ trợ bố cục trình bày</span>
+              </div>
+              <div class="ai-tool">
+                <span class="ai-tool-name">Veo 3</span>
+                <span class="ai-tool-use">Tạo video minh họa</span>
+              </div>
+              <div class="ai-tool">
+                <span class="ai-tool-name">Nano Banana 2</span>
+                <span class="ai-tool-use">Tạo hình ảnh minh họa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Academic Integrity Statement -->
+      <div class="ai-integrity" data-animate>
+        <div class="ai-integrity-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="28" height="28">
+            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+        </div>
+        <h3>Cam kết liêm chính học thuật</h3>
+        <p>
+          Nhóm sử dụng AI như <strong>công cụ hỗ trợ</strong> phân tích, thiết kế và trình bày; <strong>không sử dụng AI để thay thế toàn bộ tư duy học thuật</strong>. Mọi nội dung cuối cùng đều được nhóm kiểm chứng, chỉnh sửa và chịu trách nhiệm. Các kết luận học thuật trong sản phẩm này là quan điểm của nhóm, được xây dựng dựa trên nền tảng lý thuyết môn học.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 9: NGUỒN THAM KHẢO ===== -->
+  <section class="section section--alt" id="references">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-number">08</span>
+        <h2 class="section-title">Nguồn Tham Khảo</h2>
+        <p class="section-subtitle">Tài liệu và văn bản chính thống</p>
+      </div>
+
+      <div class="references-list" data-animate>
+        <div class="reference-item">
+          <span class="reference-number">[1]</span>
+          <span class="reference-text">Giáo trình Chủ nghĩa xã hội khoa học (dùng trong các trường đại học, cao đẳng — Bộ Giáo dục và Đào tạo).</span>
+        </div>
+        <div class="reference-item">
+          <span class="reference-number">[2]</span>
+          <span class="reference-text">Hiến pháp nước Cộng hòa Xã hội Chủ nghĩa Việt Nam năm 2013.</span>
+        </div>
+        <div class="reference-item">
+          <span class="reference-number">[3]</span>
+          <span class="reference-text">Luật Phòng, chống tham nhũng năm 2018 (Luật số 36/2018/QH14).</span>
+        </div>
+        <div class="reference-item">
+          <span class="reference-number">[4]</span>
+          <span class="reference-text">Luật Đấu thầu năm 2023 (Luật số 22/2023/QH15).</span>
+        </div>
+        <div class="reference-item">
+          <span class="reference-number">[5]</span>
+          <span class="reference-text">Nghị quyết số 27-NQ/TW ngày 09/11/2022 của Ban Chấp hành Trung ương Đảng khóa XIII về tiếp tục xây dựng và hoàn thiện Nhà nước pháp quyền xã hội chủ nghĩa Việt Nam trong giai đoạn mới.</span>
+        </div>
+        <div class="reference-item">
+          <span class="reference-number">[6]</span>
+          <span class="reference-text">Văn kiện Đại hội đại biểu toàn quốc lần thứ XIII, XIV của Đảng Cộng sản Việt Nam.</span>
+        </div>
+        <div class="reference-item">
+          <span class="reference-number">[7]</span>
+          <span class="reference-text">Các bài viết, nghiên cứu về Nhà nước pháp quyền XHCN từ Tạp chí Cộng sản, Tạp chí Nghiên cứu Lập pháp.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 10: FOOTER ===== -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-main">
+          <h3 class="footer-title">HỒ SƠ VỤ VIỆC ÔNG BÌNH</h3>
+          <p class="footer-subtitle">Giải Mã Điểm Nghẽn Pháp Quyền</p>
+        </div>
+        <div class="footer-info">
+          <div class="footer-info-item">
+            <span class="footer-label">Nhóm</span>
+            <span class="footer-value">Nhóm 5</span>
+          </div>
+          <div class="footer-info-item">
+            <span class="footer-label">Môn học</span>
+            <span class="footer-value">Chủ nghĩa xã hội khoa học</span>
+          </div>
+          <div class="footer-info-item">
+            <span class="footer-label">Chủ đề</span>
+            <span class="footer-value">Nhà nước pháp quyền XHCN & Phòng chống tham nhũng</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-note">Sản phẩm phục vụ mục đích học thuật — Không sử dụng cho mục đích thương mại.</p>
+        <a href="#hero" class="footer-back-top" aria-label="Quay lại đầu trang">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+</body>
+</html>
