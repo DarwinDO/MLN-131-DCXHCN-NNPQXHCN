@@ -135,6 +135,16 @@ When user's prompt is NOT in English:
 2. **Respond in user's language** - match their communication
 3. **Code comments/variables** remain in English
 
+### ✍️ Audience-Facing Content Style
+
+When writing content that appears in the website, slides, documents, UI, or any public-facing artifact:
+
+1. **Write for end users and presentation audiences, not for the operator/developer controlling the AI.**
+2. **Do not use meta-reporting language** such as "I added", "this section was added", "the website now has", "as requested", or wording that sounds like a progress update to the user.
+3. **Use direct educational or explanatory language** that any reader can understand without knowing the development conversation.
+4. **Frame content as part of the product/presentation itself**, e.g. "Luật Đấu thầu 2023 giúp khóa lỗ hổng lợi ích nhóm" instead of "Phần này bổ sung Luật Đấu thầu 2023".
+5. **Prefer neutral, public-facing wording** for academic content: define concepts, explain relevance, connect to the case, and state conclusions clearly.
+
 ### 🧹 Clean Code (Global Mandatory)
 
 **ALL code MUST follow `@[skills/clean-code]` rules. No exceptions.**
