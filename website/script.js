@@ -69,11 +69,20 @@ function initNavigation() {
     if (el) sections.push({ link: a, el });
   });
 
+  function getAbsoluteTop(el) {
+    let top = 0;
+    while (el) {
+      top += el.offsetTop;
+      el = el.offsetParent;
+    }
+    return top;
+  }
+
   function updateActiveNav() {
-    const scrollY = window.scrollY + 120;
+    const scrollY = window.scrollY + 160;
     let current = null;
     sections.forEach(({ link, el }) => {
-      if (el.offsetTop <= scrollY) current = link;
+      if (getAbsoluteTop(el) <= scrollY) current = link;
     });
     navAnchors.forEach(a => a.classList.remove('active'));
     if (current) current.classList.add('active');
