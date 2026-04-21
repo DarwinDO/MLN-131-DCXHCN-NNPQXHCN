@@ -742,10 +742,14 @@ function initVideoIntro() {
   const video = document.getElementById('videoIntroPlayer');
   const skipBtn = document.getElementById('videoIntroSkip');
   const playBtn = document.getElementById('videoIntroPlay');
+  const replayBtn = document.getElementById('replayVideoBtn');
   if (!overlay || !video) return;
+
+  const markReady = () => overlay.classList.add('ready');
 
   function closeIntro() {
     localStorage.setItem('videoIntroSeen', 'true');
+    overlay.classList.remove('playing');
     overlay.classList.add('hidden');
     video.pause();
   }
@@ -753,22 +757,44 @@ function initVideoIntro() {
   function startPlay() {
     if (playBtn) playBtn.classList.add('hidden');
     video.muted = false;
-    video.play();
+    video.volume = 1;
+    overlay.classList.add('playing');
+    markReady();
+
+    const playRequest = video.play();
+    if (playRequest && typeof playRequest.catch === 'function') {
+      playRequest.catch(() => {
+        overlay.classList.remove('playing');
+        if (playBtn) playBtn.classList.remove('hidden');
+      });
+    }
   }
+
+  if (replayBtn) replayBtn.addEventListener('click', replayIntroVideo);
+  if (playBtn) playBtn.addEventListener('click', startPlay);
+
+  if (skipBtn) {
+    skipBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeIntro();
+    });
+  }
+  video.addEventListener('ended', closeIntro);
 
   // Check if already seen — hide overlay
   if (localStorage.getItem('videoIntroSeen') === 'true') {
     overlay.classList.add('hidden');
+    return;
   }
 
-  // Click play button to start with sound
-  if (playBtn) playBtn.addEventListener('click', startPlay);
-
-  skipBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    closeIntro();
-  });
-  video.addEventListener('ended', closeIntro);
+  video.preload = 'auto';
+  if (video.readyState >= 2) {
+    markReady();
+  } else {
+    video.addEventListener('loadeddata', markReady, { once: true });
+    video.addEventListener('canplay', markReady, { once: true });
+  }
+  video.load();
 }
 
 function replayIntroVideo() {
@@ -776,7 +802,18 @@ function replayIntroVideo() {
   const video = document.getElementById('videoIntroPlayer');
   const playBtn = document.getElementById('videoIntroPlay');
   if (!overlay || !video) return;
-  overlay.classList.remove('hidden');
+  const markReady = () => overlay.classList.add('ready');
+  overlay.classList.remove('hidden', 'playing');
+  overlay.classList.remove('ready');
   if (playBtn) playBtn.classList.remove('hidden');
+  video.pause();
   video.currentTime = 0;
+  video.muted = false;
+  if (video.readyState >= 2) {
+    markReady();
+  } else {
+    video.addEventListener('loadeddata', markReady, { once: true });
+    video.addEventListener('canplay', markReady, { once: true });
+    video.load();
+  }
 }
