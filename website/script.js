@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initParallaxBlueprint();
   initFlowLineDrawing();
   initCorruptionFlow();
+  initChapterRail();
 });
 
 function rafThrottle(fn) {
@@ -285,6 +286,112 @@ function togglePrinciple(card) {
   if (!wasActive) card.classList.add('active');
 }
 
+/* ===== GOVERNANCE MAP ===== */
+const govData = {
+  1: {
+    title: 'Của dân, do dân, vì dân',
+    principle: 'Mọi quyền lực nhà nước thuộc về Nhân dân. Nhà nước phải hoạt động vì lợi ích chung, được Nhân dân ủy quyền và giám sát.',
+    caseText: 'Ông Bình dùng quyền lực công để phê duyệt dự án cho người thân hưởng lợi, biến quyền lực "của dân" thành công cụ phục vụ lợi ích cá nhân. Bản chất "vì dân" bị xâm phạm nghiêm trọng.',
+    why: '"Của dân, do dân, vì dân" không chỉ là khẩu hiệu mà là nền tảng chính đáng hóa quyền lực nhà nước XHCN. Khi bị vi phạm, tính chính đáng đó bị suy giảm.'
+  },
+  2: {
+    title: 'Thượng tôn Hiến pháp và pháp luật',
+    principle: 'Không ai được đứng trên pháp luật. Mọi cơ quan, cá nhân trong bộ máy nhà nước phải hành động trong khuôn khổ Hiến pháp và pháp luật.',
+    caseText: 'Ông Bình tự ý phê duyệt dự án vượt thẩm quyền, bỏ qua trình tự pháp lý. Dù viện dẫn "mục đích tốt", hành vi này đặt ý chí cá nhân lên trên pháp luật.',
+    why: 'Nếu chấp nhận "mục đích tốt biện hộ cho vi phạm", pháp luật mất đi tính phổ quát và bình đẳng — nền tảng không thể thiếu của Nhà nước pháp quyền.'
+  },
+  3: {
+    title: 'Kiểm soát quyền lực nhà nước',
+    principle: 'Quyền lực nhà nước phải được phân công rõ ràng, có cơ chế kiểm soát lẫn nhau và giám sát từ Nhân dân để ngăn chặn lạm quyền.',
+    caseText: 'Ông Bình vừa phê duyệt dự án, vừa chọn nhà thầu là người thân — vừa ra quyết định, vừa kiểm soát quá trình thực hiện. Cơ chế kiểm soát quyền lực bị vô hiệu hóa.',
+    why: 'Kiểm soát quyền lực là yêu cầu cốt lõi để ngăn chặn cá nhân biến quyền công thành quyền tư. Thiếu kiểm soát, nguy cơ tham nhũng tăng theo cấp số nhân.'
+  },
+  4: {
+    title: 'Minh bạch, liêm chính, chống lợi ích nhóm',
+    principle: 'Hoạt động công vụ phải minh bạch, cán bộ phải liêm chính, không để xung đột lợi ích ảnh hưởng đến quyết định công.',
+    caseText: 'Chỉ định thầu cho anh vợ là xung đột lợi ích điển hình. Không đấu thầu công khai là xóa bỏ minh bạch. Chênh lệch 4,5 tỷ là dấu hiệu lợi ích nhóm xâm hại lợi ích công.',
+    why: 'Minh bạch là ánh sáng ngăn tham nhũng phát triển trong bóng tối. Thiếu minh bạch, công chính bị thay bằng thân quen, pháp luật bị thay bằng "linh hoạt".'
+  },
+  5: {
+    title: 'Bảo vệ lợi ích công và niềm tin xã hội',
+    principle: 'Nhà nước pháp quyền XHCN phải bảo vệ tài sản công, lợi ích chung của cộng đồng, và duy trì niềm tin của Nhân dân vào bộ máy nhà nước.',
+    caseText: '4,5 tỷ đồng thất thoát là tài sản công bị xâm hại. Niềm tin của người dân vào tính liêm chính của chính quyền bị tổn thương. Sai phạm không xử lý trở thành tiền lệ xấu.',
+    why: 'Niềm tin xã hội là "vốn" phi vật chất quý giá nhất. Mỗi vụ vi phạm không bị xử lý sẽ ăn mòn niềm tin đó — và niềm tin rất khó tái tạo.'
+  }
+};
+
+function selectGovNode(id) {
+  const data = govData[id];
+  if (!data) return;
+
+  // Update node states
+  document.querySelectorAll('.gov-map-node').forEach(n => {
+    n.classList.toggle('active', n.dataset.gov == id);
+  });
+
+  // Update line states
+  document.querySelectorAll('.gov-map-line').forEach(l => {
+    l.classList.toggle('active', l.dataset.govLine == id);
+  });
+
+  // Render panel
+  const panel = document.getElementById('govMapPanel');
+  panel.innerHTML = `
+    <div class="gov-map-panel-inner">
+      <div class="gov-map-panel-title">
+        <span class="gov-map-panel-num">0${id}</span>
+        <span class="gov-map-panel-name">${data.title}</span>
+      </div>
+      <div class="gov-map-panel-section">
+        <h4 class="gmp-principle">Nguyên tắc</h4>
+        <p>${data.principle}</p>
+      </div>
+      <div class="gov-map-panel-section">
+        <h4 class="gmp-case">Trong vụ Ông Bình</h4>
+        <p>${data.caseText}</p>
+      </div>
+      <div class="gov-map-panel-section">
+        <h4 class="gmp-why">Vì sao quan trọng?</h4>
+        <p>${data.why}</p>
+      </div>
+    </div>
+  `;
+  panel.classList.add('active');
+}
+
+/* ===== INSTITUTIONAL MAP ===== */
+const instData = {
+  economy: { title: 'Thể Chế Kinh Tế', desc: 'Thể chế minh bạch là điều kiện để ngăn thất thoát và hạn chế lợi ích nhóm trong sử dụng nguồn lực công. Vụ Ông Bình cho thấy khi thiếu cơ chế kiểm soát tài chính minh bạch, ngân sách công dễ bị bẻ lệch phục vụ lợi ích cá nhân.' },
+  law: { title: 'Xây Dựng Pháp Luật', desc: 'Hệ thống pháp luật phải rõ, đồng bộ, khả thi — không chỉ để quy định mà còn để bảo đảm mọi chủ thể đều bị ràng buộc như nhau. Ông Bình vi phạm vì khe hở giữa thẩm quyền cấp huyện và quy trình đấu thầu chưa được luật hóa đủ chặt.' },
+  justice: { title: 'Cải Cách Tư Pháp', desc: 'Một nền tư pháp nghiêm minh và cơ chế xử lý trách nhiệm rõ ràng là điều kiện để pháp quyền không dừng ở khẩu hiệu. Nếu sai phạm như vụ Ông Bình không bị xử lý nghiêm, nó sẽ trở thành tiền lệ xấu.' },
+  push: { title: 'Lực Đẩy', desc: 'Yêu cầu hiện đại hóa quản trị quốc gia, chuyển đổi số, nâng cao uy tín thể chế, và bảo vệ lợi ích công đang tạo động lực mạnh cho việc hoàn thiện Nhà nước pháp quyền.' },
+  pull: { title: 'Lực Cản', desc: 'Rủi ro của bệnh hình thức, cách làm tùy tiện, tâm lý "linh hoạt sai quy trình", và kỷ luật thực thi yếu có thể làm méo mó mục tiêu cải cách. Vụ Ông Bình là ví dụ điển hình của tâm lý "linh hoạt vì mục đích tốt".' },
+  mission: { title: 'Nhiệm Vụ Sống Còn', desc: 'Xây dựng kỷ luật thực thi nghiêm minh, kiểm soát quyền lực chặt chẽ, và rà soát đồng bộ pháp luật là điều kiện để pháp quyền đi vào đời sống thực chất.' }
+};
+
+function selectInstNode(id) {
+  const data = instData[id];
+  if (!data) return;
+
+  document.querySelectorAll('.inst-map-item').forEach(n => {
+    n.classList.toggle('active', n.dataset.inst === id);
+  });
+
+  const panel = document.getElementById('instMapPanel');
+  panel.innerHTML = `
+    <div class="inst-map-panel-inner">
+      <h4>${data.title}</h4>
+      <p>${data.desc}</p>
+    </div>
+  `;
+  panel.classList.add('active');
+}
+
+/* ===== DNA BRANCH TOGGLE ===== */
+function toggleDnaBranch(el) {
+  el.classList.toggle('active');
+}
+
 /* ===== QUIZ → DECISION TREE ===== */
 const dtState = { step: 0, choices: [] };
 
@@ -481,4 +588,23 @@ function initFlowLineDrawing() {
   }, { threshold: 0.35 });
 
   observer.observe(flowLines);
+}
+
+/* ===== CHAPTER RAIL TRACKING ===== */
+function initChapterRail() {
+  const chapters = document.querySelectorAll('.chapter');
+  const railItems = document.querySelectorAll('.chapter-rail-item');
+  if (!chapters.length || !railItems.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const id = entry.target.id;
+      railItems.forEach(item => {
+        item.classList.toggle('active', item.dataset.chapter === id);
+      });
+    });
+  }, { threshold: 0, rootMargin: '-30% 0px -60% 0px' });
+
+  chapters.forEach(ch => observer.observe(ch));
 }
